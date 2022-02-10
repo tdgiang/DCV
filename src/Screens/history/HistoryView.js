@@ -5,6 +5,7 @@ const HistoryView = (props) => {
     return <View>
         <Text>
             History
+            manager
         </Text>
     </View>
 }

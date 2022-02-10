@@ -5,11 +5,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { connect } from "react-redux";
 import R from "../assets/R";
 import Octicons from "react-native-vector-icons/Octicons";
+import Entypo from "react-native-vector-icons/Entypo"
 
 import Home from "../Screens/home/Home";
 import History from "../Screens/history/History";
 import Notification from "../Screens/notification/Notification";
 import Account from "../Screens/Account/Account";
+import Profile from "../Screens/Profile/Profile"
 
 const Tab = createBottomTabNavigator();
 
@@ -58,6 +60,16 @@ const TabNavigator = (props) => {
             tabBarLabel: "",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="person" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarLabel: "Profile",
+            tabBarIcon: ({ color, size }) => (
+              <Entypo name="circle-with-plus" size={size} color={color} />
             ),
           }}
         />

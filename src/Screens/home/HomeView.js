@@ -14,6 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import SwiperComponent from "./SwiperComponent";
 import InputForm from "../../components/Input/InputForm";
 
+import PickerImg from "../../components/Picker/PickerImg";
+
 const HomeView = (props) => {
   const navigation = useNavigation();
   const { listItem, listItem2 } = props;
@@ -25,7 +27,11 @@ const HomeView = (props) => {
         paddingHorizontal: 10,
       }}
     >
-      <Text>Home</Text>
+      <Text>Homeeeeee</Text>
+
+      <PickerImg 
+        
+      />
 
       <InputForm title={"Ten dang nhap"} />
     </SafeAreaView>

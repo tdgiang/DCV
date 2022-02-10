@@ -95,17 +95,21 @@ const PickerImg = (props) => {
             }}
           >
             <TouchableOpacity style={styles.selectionImg} onPress={onCapture}>
+              <Text>Chụp ảnh</Text>
               <Image style={styles.imgIcon} source={R.images.iconCamera} />
 
-              <AppText i18nKey={"Take_photo"} style={styles.txtTitleBtn} />
+              
+
+              
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.selectionImg}
               onPress={onchoosGalery}
             >
-              <Image style={styles.imgIcon} source={R.images.iconImg} />
+              <Text>Chọn ảnh</Text>
+              <Image style={styles.imgIcon} source={R.images.iconCamera} />
 
-              <AppText i18nKey={"Photo_library"} style={styles.txtTitleBtn} />
+              {/* <AppText i18nKey={"Photo_library"} style={styles.txtTitleBtn} /> */}
             </TouchableOpacity>
           </View>
         </View>
