@@ -1,5 +1,5 @@
 const colors = {
-  main: '#Fb9736',
+  main: '#17B899',
   txtMain: '#006938',
   colorf39: '#F39C12',
   gray5b71: '#5B7195',
@@ -55,6 +55,8 @@ const colors = {
   red1: '#FA1E1E',
   bgMain: '#9EF8C9',
   brown: '#886327',
+
+  bgcInput: '#E4E4E4'
 };
 
 export default colors;

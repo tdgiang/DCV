@@ -20,13 +20,17 @@ const TabNavigator = (props) => {
     <View style={{ flex: 1 }}>
       <Tab.Navigator
         initialRouteName="Screen5"
-        tabBarOptions={{ activeTintColor: R.colors.main }}
+        tabBarOptions={{ 
+          activeTintColor: 'red',
+          inactiveTintColor: '#000'
+          
+        }}
       >
         <Tab.Screen
           name="HomeScreen"
           component={Home}
           options={{
-            tabBarLabel: "",
+            tabBarLabel: "Home",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="home" size={size} color={color} />
             ),
@@ -36,7 +40,7 @@ const TabNavigator = (props) => {
           name="HistoryScreen"
           component={History}
           options={{
-            tabBarLabel: "",
+            tabBarLabel: "History",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="history" size={size} color={color} />
             ),
@@ -47,7 +51,7 @@ const TabNavigator = (props) => {
           name="NotificationScreen"
           component={Notification}
           options={{
-            tabBarLabel: "",
+            tabBarLabel: "Notification",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="bell" size={size} color={color} />
             ),
@@ -57,7 +61,7 @@ const TabNavigator = (props) => {
           name="AccountScreen"
           component={Account}
           options={{
-            tabBarLabel: "",
+            tabBarLabel: "Account",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="person" size={size} color={color} />
             ),

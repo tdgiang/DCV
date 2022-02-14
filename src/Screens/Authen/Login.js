@@ -44,6 +44,9 @@ import { useForm, Controller } from "react-hook-form";
 import TextForm from "../../components/Input/InputForm";
 import AppText from "../../components/AppText";
 import Button from "../../components/Button";
+import Header from "../../components/Header/Header"
+import { upperCase } from "lodash";
+import { color } from "react-native-reanimated";
 
 const Login = (props) => {
   const {
@@ -60,8 +63,14 @@ const Login = (props) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "blue", paddingHorizontal: 10 }}>
-      <View style={{ marginTop: HEIGHTXD(760) }}>
+    <View style={{ flex: 1, backgroundColor: "#FDFDFD" }}>
+      <Header title="Đăng nhập" />
+      <View style={{marginTop: HEIGHTXD(135), paddingHorizontal: 20 }}>
+        <View>
+          <Text style={styles.txtHeading}>Chào mừng!</Text>
+          <Text style={styles.txtHeading}>Trở lại công ty</Text>
+          <Text style={styles.txtHeading}>DCV</Text>
+        </View>
         <Controller
           control={control}
           rules={{
@@ -70,8 +79,8 @@ const Login = (props) => {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextForm
               textColor={R.colors.white}
-              placeHolderColor={"#80E0FF"}
-              placeholder={I18n.t("EnterUsername")}
+              placeholder={I18n.t("Email")}
+              // fontSize="24"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -90,9 +99,9 @@ const Login = (props) => {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextForm
               textColor={R.colors.white}
-              placeHolderColor={"#80E0FF"}
               title={"password"}
-              placeholder={I18n.t("EnterPass")}
+              // placeholder={I18n.t("EnterPass")}
+              placeholder="Mật khẩu"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -103,22 +112,26 @@ const Login = (props) => {
           name="password"
           defaultValue=""
         />
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          // title={I18n.t("Login")}
+          // backgroundColor={R.colors.main}
+          title={("ĐĂNG NHẬP")}
+          containerStyle={{marginTop: 8}}
+        />
+
         <View style={styles.row}>
           <View />
           <TouchableOpacity onPress={() => navigate.navigate(FORGOTPASSWORD)}>
-            <AppText style={styles.txtTitle} i18nKey={"ForgotPassword"} />
+            {/* <AppText style={styles.txtTitle} i18nKey={"ForgotPassword"} /> */}
+            <Text style={{textDecorationLine: 1, fontWeight: "bold"}}>Quên mật khẩu?</Text>
           </TouchableOpacity>
         </View>
-        <Button
-          onPress={handleSubmit(onSubmit)}
-          backgroundColor={"#FFC700"}
-          title={I18n.t("Login")}
-        />
-        <Button
+        {/* <Button
           onPress={() => navigate.navigate(REGISTER)}
           backgroundColor={"#55CEBF"}
           title={I18n.t("Register")}
-        />
+        /> */}
         <View
           style={{
             marginTop: 20,
@@ -126,9 +139,9 @@ const Login = (props) => {
             alignItems: "center",
           }}
         >
-          <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
+          {/* <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
             <AppText style={styles.txtTitle} i18nKey={"GoBackHome"} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
@@ -139,7 +152,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
 
   txtTitle: {
@@ -148,6 +161,18 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: 10,
   },
+
+  containerStyle: {
+    paddingHorizontal: 2
+  },
+
+  txtHeading: {
+    fontSize: 30,
+    color: '#0E4A86',
+    fontWeight: '700',
+    marginBottom: 8,
+  }
+
 });
 
 const mapStateToProps = (state) => {

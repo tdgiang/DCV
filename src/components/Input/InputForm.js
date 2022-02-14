@@ -28,23 +28,28 @@ const TextField = (props) => {
       <TextInput
         onBlur={onBlur}
         maxLength={maxLength ? maxLength : 256}
-        placeholderTextColor={placeHolderColor}
+        placeholderTextColor={'#3C3C3C'}
         editable={editable != null ? editable : true}
         placeholder={placeholder}
         secureTextEntry={isPassword}
         autoCapitalize="none"
         value={value}
-        fontSize={13}
+        fontSize={24}
         keyboardType={keyboardType}
         onChangeText={(val) => onChangeText(val)}
         style={{
-          height: HEIGHTXD(109),
-          color: textColor,
-          borderBottomWidth: 1,
+          // height: HEIGHTXD(60),
+          // color: textColor,
+          // color: 'red',
+          // borderBottomWidth: 1,
+          // borderRadius: 15,
           fontSize: fontSize ? fontSize : getFontXD(42),
-          paddingVertical: 5,
-          paddingHorizontal: 5,
-          borderBottomColor: "#80E0FF",
+          paddingVertical: 20,
+          paddingHorizontal: 20,
+          backgroundColor: R.colors.bgcInput,
+          borderRadius: 20,
+
+          // borderBottomColor: "#80E0FF",
         }}
       />
       <View

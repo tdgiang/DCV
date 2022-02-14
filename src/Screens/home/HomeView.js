@@ -17,6 +17,7 @@ import InputForm from "../../components/Input/InputForm";
 import PickerImg from "../../components/Picker/PickerImg";
 
 const HomeView = (props) => {
+  console.log(12)
   const navigation = useNavigation();
   const { listItem, listItem2 } = props;
   return (
@@ -27,11 +28,7 @@ const HomeView = (props) => {
         paddingHorizontal: 10,
       }}
     >
-      <Text>Homeeeeee</Text>
-
-      <PickerImg 
-        
-      />
+      <Text>Trang chus</Text>
 
       <InputForm title={"Ten dang nhap"} />
     </SafeAreaView>

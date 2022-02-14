@@ -34,6 +34,7 @@ class AppText extends React.Component {
     return (
       <Text style={style}>
         {i18nKey ? i18n.t(i18nKey) : this.props.children}
+        {console.log(this.props.children)}
       </Text>
     );
   }
