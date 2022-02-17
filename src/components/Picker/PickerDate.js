@@ -52,7 +52,7 @@ class PickerDate extends Component {
         <Text
           style={{
             fontSize: getFontXD(42),
-            color: R.colors.color777,
+            color: R.colors.black,
             marginBottom: 5,
           }}
         >

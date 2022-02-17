@@ -1,8 +1,12 @@
-import React from "react";
-import { View, Text, TextInput } from "react-native";
+import React, {useState} from "react";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { HEIGHTXD, WIDTHXD, getFontXD } from "../../Config/Functions";
 import R from "../../assets/R";
 import I18n from "../../helper/i18/i18n";
+
+import Icon from "react-native-vector-icons/Feather";
+
+
 
 const TextField = (props) => {
   const {
@@ -23,15 +27,17 @@ const TextField = (props) => {
     fontSize,
   } = props;
 
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <View>
       <TextInput
         onBlur={onBlur}
         maxLength={maxLength ? maxLength : 256}
-        placeholderTextColor={'#3C3C3C'}
+        placeholderTextColor={placeHolderColor}
         editable={editable != null ? editable : true}
         placeholder={placeholder}
-        secureTextEntry={isPassword}
+        secureTextEntry={isPassword && !showPassword}
         autoCapitalize="none"
         value={value}
         fontSize={24}
@@ -51,7 +57,15 @@ const TextField = (props) => {
 
           // borderBottomColor: "#80E0FF",
         }}
+
       />
+        {isPassword && <TouchableOpacity style={{position: 'absolute', right: 17, top: 20}}
+           onPress={() => setShowPassword(!showPassword)}
+        >
+          <Icon name={showPassword ? 'eye' : 'eye-off'} size={20} color={'#4B4B4B'}/>
+        </TouchableOpacity>
+        }
+
       <View
         style={{
           height: 20,
@@ -62,11 +76,12 @@ const TextField = (props) => {
         {error && (
           <Text
             style={{
-              color: tinColor ? tinColor : "#ffc700",
+              color: tinColor ? tinColor : "red",
               fontSize: getFontXD(32),
             }}
           >
-            {I18n.t("PleaseEnterField")}
+            {/* {I18n.t("PleaseEnterField")} */}
+            Vui lòng nhập trường này!
           </Text>
         )}
       </View>

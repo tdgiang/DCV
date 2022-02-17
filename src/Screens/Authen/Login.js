@@ -66,7 +66,7 @@ const Login = (props) => {
     <View style={{ flex: 1, backgroundColor: "#FDFDFD" }}>
       <Header title="Đăng nhập" />
       <View style={{marginTop: HEIGHTXD(135), paddingHorizontal: 20 }}>
-        <View>
+        <View style={{marginBottom: HEIGHTXD(50)}}>
           <Text style={styles.txtHeading}>Chào mừng!</Text>
           <Text style={styles.txtHeading}>Trở lại công ty</Text>
           <Text style={styles.txtHeading}>DCV</Text>
@@ -79,12 +79,14 @@ const Login = (props) => {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextForm
               textColor={R.colors.white}
+              placeHolderColor='#726D6D'
               placeholder={I18n.t("Email")}
               // fontSize="24"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
               error={errors.username}
+              fontSize={18}
             />
           )}
           name="username"
@@ -101,12 +103,15 @@ const Login = (props) => {
               textColor={R.colors.white}
               title={"password"}
               // placeholder={I18n.t("EnterPass")}
+              placeHolderColor='#726D6D'
               placeholder="Mật khẩu"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
               isPassword={true}
               error={errors.password}
+              fontSize={20}
+              
             />
           )}
           name="password"
@@ -115,7 +120,7 @@ const Login = (props) => {
         <Button
           onPress={handleSubmit(onSubmit)}
           // title={I18n.t("Login")}
-          // backgroundColor={R.colors.main}
+          backgroundColor={R.colors.main}
           title={("ĐĂNG NHẬP")}
           containerStyle={{marginTop: 8}}
         />
@@ -124,7 +129,7 @@ const Login = (props) => {
           <View />
           <TouchableOpacity onPress={() => navigate.navigate(FORGOTPASSWORD)}>
             {/* <AppText style={styles.txtTitle} i18nKey={"ForgotPassword"} /> */}
-            <Text style={{textDecorationLine: 1, fontWeight: "bold"}}>Quên mật khẩu?</Text>
+            <Text style={{textDecorationLine: "underline", fontWeight: "bold"}}>Quên mật khẩu?</Text>
           </TouchableOpacity>
         </View>
         {/* <Button
@@ -141,6 +146,9 @@ const Login = (props) => {
         >
           {/* <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
             <AppText style={styles.txtTitle} i18nKey={"GoBackHome"} />
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
+            <Text>Về trang chủ</Text>
           </TouchableOpacity> */}
         </View>
       </View>

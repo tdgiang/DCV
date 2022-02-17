@@ -20,7 +20,7 @@ const Button = (props) => {
           height: 45,
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: R.colors.main,
+          backgroundColor: backgroundColor,
           borderRadius: 10,
           marginVertical: HEIGHTXD(50),
           elevation: 2,

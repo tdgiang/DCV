@@ -6,9 +6,10 @@ import { connect } from "react-redux";
 import R from "../assets/R";
 import Octicons from "react-native-vector-icons/Octicons";
 import Entypo from "react-native-vector-icons/Entypo"
+import AntDesign from "react-native-vector-icons/AntDesign"
 
 import Home from "../Screens/home/Home";
-import History from "../Screens/history/History";
+import Request from "../Screens/request/Request";
 import Notification from "../Screens/notification/Notification";
 import Account from "../Screens/Account/Account";
 import Profile from "../Screens/Profile/Profile"
@@ -21,7 +22,7 @@ const TabNavigator = (props) => {
       <Tab.Navigator
         initialRouteName="Screen5"
         tabBarOptions={{ 
-          activeTintColor: 'red',
+          activeTintColor: '#119078',
           inactiveTintColor: '#000'
           
         }}
@@ -30,19 +31,20 @@ const TabNavigator = (props) => {
           name="HomeScreen"
           component={Home}
           options={{
-            tabBarLabel: "Home",
+            tabBarLabel: "Trang chủ",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="home" size={size} color={color} />
             ),
           }}
         />
         <Tab.Screen
-          name="HistoryScreen"
-          component={History}
+          name="RequestScreen"
+          component={Request}
           options={{
-            tabBarLabel: "History",
+            tabBarLabel: "Đơn từ",
             tabBarIcon: ({ color, size }) => (
-              <Octicons name="history" size={size} color={color} />
+              // <Octicons name="history" size={size} color={color} />
+              <AntDesign name="mail" size={size} color={color} />
             ),
           }}
         />
@@ -51,7 +53,7 @@ const TabNavigator = (props) => {
           name="NotificationScreen"
           component={Notification}
           options={{
-            tabBarLabel: "Notification",
+            tabBarLabel: "Chấm công",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="bell" size={size} color={color} />
             ),
@@ -61,7 +63,7 @@ const TabNavigator = (props) => {
           name="AccountScreen"
           component={Account}
           options={{
-            tabBarLabel: "Account",
+            tabBarLabel: "Thông báo",
             tabBarIcon: ({ color, size }) => (
               <Octicons name="person" size={size} color={color} />
             ),
@@ -71,7 +73,7 @@ const TabNavigator = (props) => {
           name="Profile"
           component={Profile}
           options={{
-            tabBarLabel: "Profile",
+            tabBarLabel: "Cài đặt",
             tabBarIcon: ({ color, size }) => (
               <Entypo name="circle-with-plus" size={size} color={color} />
             ),
