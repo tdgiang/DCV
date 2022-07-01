@@ -93,9 +93,15 @@ const listBanner = [
 ]
 
 const Home = (props) => {
-    return <HomeView listItem={listItem}
-                     listItem2={listItem2}
-                     listBanner={listBanner}/>;
+
+    console.log(props)
+    return (
+        <HomeView 
+            listItem={listItem}
+            listItem2={listItem2}
+            listBanner={listBanner}
+        />
+    )
 };
 
 export default Home;

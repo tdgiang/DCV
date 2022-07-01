@@ -1,9 +1,10 @@
 const colors = {
-  main: '#Fb9736',
+  main: '#17B899',
   txtMain: '#006938',
   colorf39: '#F39C12',
   gray5b71: '#5B7195',
   corlor9c: '#FF9C00',
+  colordb2: '#DB2F09',
   color949: '#949494',
   color504: '#A60014',
   colorRGBA040: 'rgba(255,255,255,0.4)',
@@ -44,6 +45,8 @@ const colors = {
   gray1: '#bfbfbf',
   gray4: '#e6e6e6',
   gray5: 'rgba(226,232,235, 0.6)',
+  gray6: '#f6f4f4',
+  txtGray: '#959eac',
   orange: '#Fb9736',
   lightBlue: '#1a8cff',
   lightBlue1: '#008ae6',
@@ -55,6 +58,8 @@ const colors = {
   red1: '#FA1E1E',
   bgMain: '#9EF8C9',
   brown: '#886327',
+
+  bgcInput: '#E4E4E4'
 };
 
 export default colors;

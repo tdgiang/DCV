@@ -20,7 +20,7 @@ const Button = (props) => {
           height: 45,
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor,
+          backgroundColor: backgroundColor,
           borderRadius: 10,
           marginVertical: HEIGHTXD(50),
           elevation: 2,
@@ -40,7 +40,7 @@ const Button = (props) => {
         style={[
           {
             fontSize: getFontXD(46),
-            color: R.colors.textMain,
+            color: R.colors.white,
             fontWeight: "600",
           },
           { ...txtStyle },

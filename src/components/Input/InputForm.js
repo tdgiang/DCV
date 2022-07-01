@@ -1,8 +1,12 @@
-import React from "react";
-import { View, Text, TextInput } from "react-native";
+import React, {useState} from "react";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { HEIGHTXD, WIDTHXD, getFontXD } from "../../Config/Functions";
 import R from "../../assets/R";
 import I18n from "../../helper/i18/i18n";
+
+import Icon from "react-native-vector-icons/Feather";
+
+
 
 const TextField = (props) => {
   const {
@@ -21,7 +25,10 @@ const TextField = (props) => {
     textColor,
     tinColor,
     fontSize,
+    containerStyle
   } = props;
+
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <View>
@@ -31,22 +38,37 @@ const TextField = (props) => {
         placeholderTextColor={placeHolderColor}
         editable={editable != null ? editable : true}
         placeholder={placeholder}
-        secureTextEntry={isPassword}
+        secureTextEntry={isPassword && !showPassword}
         autoCapitalize="none"
         value={value}
-        fontSize={13}
+        fontSize={24}
         keyboardType={keyboardType}
         onChangeText={(val) => onChangeText(val)}
-        style={{
-          height: HEIGHTXD(109),
-          color: textColor,
-          borderBottomWidth: 1,
+        style={[{
+          // height: HEIGHTXD(60),
+          // color: textColor,
+          // color: 'red',
+          // borderBottomWidth: 1,
+          // borderRadius: 15,
           fontSize: fontSize ? fontSize : getFontXD(42),
-          paddingVertical: 5,
-          paddingHorizontal: 5,
-          borderBottomColor: "#80E0FF",
-        }}
+          paddingVertical: 20,
+          paddingHorizontal: 20,
+          backgroundColor: R.colors.bgcInput,
+          borderRadius: 20,
+
+          // borderBottomColor: "#80E0FF",
+        },
+        {...containerStyle}
+      ]}
+
       />
+        {isPassword && <TouchableOpacity style={{position: 'absolute', right: 17, top: 20}}
+           onPress={() => setShowPassword(!showPassword)}
+        >
+          <Icon name={showPassword ? 'eye' : 'eye-off'} size={20} color={'#4B4B4B'}/>
+        </TouchableOpacity>
+        }
+
       <View
         style={{
           height: 20,
@@ -57,11 +79,12 @@ const TextField = (props) => {
         {error && (
           <Text
             style={{
-              color: tinColor ? tinColor : "#ffc700",
+              color: tinColor ? tinColor : "red",
               fontSize: getFontXD(32),
             }}
           >
-            {I18n.t("PleaseEnterField")}
+            {/* {I18n.t("PleaseEnterField")} */}
+            Vui lòng nhập trường này!
           </Text>
         )}
       </View>

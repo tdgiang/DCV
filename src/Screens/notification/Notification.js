@@ -1,8 +1,9 @@
-import React from 'react';
-import NotificationView from "./NotificationView";
+import React, {Component} from 'react';
+import {View, Text} from 'react-native';
+import NotificationView from './NotificationView';
 
 const Notification = (props) => {
-    return <NotificationView />;
+  return <NotificationView />;
 };
 
 export default Notification;

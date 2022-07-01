@@ -8,6 +8,7 @@
 
 import React from "react";
 
+import {StatusBar} from "react-native"
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./src/Reducers/index";
@@ -25,6 +26,7 @@ const App = () => {
     <Provider store={store}>
      
       <RootView />
+      {/* <StatusBar barStyle = "dark-content" /> */}
     </Provider>
   );
 };

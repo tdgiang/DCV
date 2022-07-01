@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   txtTitle: {
     flex: 1,
-    fontSize: getFontXD(42),
+    fontSize: getFontXD(46),
     textAlign: "center",
     fontWeight: "bold",
     color: R.colors.white,

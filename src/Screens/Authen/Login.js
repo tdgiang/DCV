@@ -34,7 +34,7 @@ import {
 } from "../../routers/ScreenNames";
 import I18n from "../../helper/i18/i18n";
 import { showAlert, TYPE } from "../../components/DropdownAlert";
-import { loginApi } from "../../apis/Functions/users";
+import { LoginApi } from '../../apis/user'
 import { showLoading, hideLoading } from "../../actions/loadingAction";
 import { saveUserToRedux } from "../../actions/users";
 import { connect } from "react-redux";
@@ -44,6 +44,9 @@ import { useForm, Controller } from "react-hook-form";
 import TextForm from "../../components/Input/InputForm";
 import AppText from "../../components/AppText";
 import Button from "../../components/Button";
+import Header from "../../components/Header/Header"
+import { upperCase } from "lodash";
+import { color } from "react-native-reanimated";
 
 const Login = (props) => {
   const {
@@ -54,14 +57,39 @@ const Login = (props) => {
 
   const navigate = useNavigation();
 
-  const onSubmit = (data) => {
-    navigate.navigate(TABNAVIGATOR);
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await LoginApi({ })
+      const dataLogin = response.data
+      if (response.status === 200) {
+        dataLogin.forEach((item) =>  {
+          if (item.username == data.username && item.password == data.password) {
+            props.saveUserToRedux(item)
+            navigate.navigate(TABNAVIGATOR, { item })
+          } else {
+            Alert.alert(
+              'Sai tên tài khoản hoặc mật khẩu'
+            )
+          }
+        })
+
+
+    }
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "blue", paddingHorizontal: 10 }}>
-      <View style={{ marginTop: HEIGHTXD(760) }}>
+    <View style={{ flex: 1, backgroundColor: "#FDFDFD" }}>
+      <Header title="Đăng nhập" />
+      <View style={{marginTop: HEIGHTXD(135), paddingHorizontal: 20 }}>
+        <View style={{marginBottom: HEIGHTXD(50)}}>
+          <Text style={styles.txtHeading}>Chào mừng!</Text>
+          <Text style={styles.txtHeading}>Trở lại công ty</Text>
+          <Text style={styles.txtHeading}>DCV</Text>
+        </View>
         <Controller
           control={control}
           rules={{
@@ -70,12 +98,14 @@ const Login = (props) => {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextForm
               textColor={R.colors.white}
-              placeHolderColor={"#80E0FF"}
-              placeholder={I18n.t("EnterUsername")}
+              placeHolderColor='#726D6D'
+              placeholder={I18n.t("Email")}
+              // fontSize="24"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
               error={errors.username}
+              fontSize={18}
             />
           )}
           name="username"
@@ -90,35 +120,41 @@ const Login = (props) => {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextForm
               textColor={R.colors.white}
-              placeHolderColor={"#80E0FF"}
               title={"password"}
-              placeholder={I18n.t("EnterPass")}
+              // placeholder={I18n.t("EnterPass")}
+              placeHolderColor='#726D6D'
+              placeholder="Mật khẩu"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
               isPassword={true}
               error={errors.password}
+              fontSize={20}
+              
             />
           )}
           name="password"
           defaultValue=""
         />
-        <View style={styles.row}>
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          // title={I18n.t("Login")}
+          backgroundColor={R.colors.main}
+          title={("ĐĂNG NHẬP")}
+          containerStyle={{marginTop: 8}}
+        />
+
+        {/* <View style={styles.row}>
           <View />
           <TouchableOpacity onPress={() => navigate.navigate(FORGOTPASSWORD)}>
             <AppText style={styles.txtTitle} i18nKey={"ForgotPassword"} />
           </TouchableOpacity>
-        </View>
-        <Button
-          onPress={handleSubmit(onSubmit)}
-          backgroundColor={"#FFC700"}
-          title={I18n.t("Login")}
-        />
-        <Button
+        </View> */}
+        {/* <Button
           onPress={() => navigate.navigate(REGISTER)}
           backgroundColor={"#55CEBF"}
           title={I18n.t("Register")}
-        />
+        /> */}
         <View
           style={{
             marginTop: 20,
@@ -126,9 +162,12 @@ const Login = (props) => {
             alignItems: "center",
           }}
         >
-          <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
+          {/* <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
             <AppText style={styles.txtTitle} i18nKey={"GoBackHome"} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity onPress={() => navigate.navigate(TABNAVIGATOR)}>
+            <Text>Về trang chủ</Text>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
@@ -139,7 +178,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
 
   txtTitle: {
@@ -148,6 +187,18 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: 10,
   },
+
+  containerStyle: {
+    paddingHorizontal: 2
+  },
+
+  txtHeading: {
+    fontSize: 30,
+    color: '#0E4A86',
+    fontWeight: '700',
+    marginBottom: 8,
+  }
+
 });
 
 const mapStateToProps = (state) => {
