@@ -15,9 +15,10 @@ import PickerDate from "../../components/Picker/PickerDate"
 import { REQUEST } from "../../routers/ScreenNames";
 import { convertDate ,convertTimeApi} from "../../Config/Functions";
 
-const AddLetter = () => {
+const AddLetter = (props) => {
     const navigate = useNavigation();
 
+    const { onCancle, onSubmit } = props
     const {
         control,
         handleSubmit,
@@ -27,47 +28,44 @@ const AddLetter = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-        {label: 'Đơn xin nghỉ phép', value: 'nghiphep'},
-        {label: 'Đơn xin làm thêm giờ', value: 'lamthem'},
-        {label: 'Đơn xin nghỉ việc', value: 'nghiviec'},
-        {label: 'Đơn xin vắng mặt', value: 'vangmat'},
+        {label: 'Đơn xin nghỉ phép', value: 'Đơn xin nghỉ phép'},
+        {label: 'Đơn xin làm thêm giờ', value: 'Đơn xin làm thêm giờ'},
+        {label: 'Đơn xin nghỉ việc', value: 'Đơn xin nghỉ việc'},
+        {label: 'Đơn xin vắng mặt', value: 'Đơn xin vắng mặt'},
     ]);
     const [date, setDate] = useState(new Date())
     const handleOnChangeDate = (date) => {
         setDate(date)
+    }
+
+    // const onSubmit = (data) => {
+    //     // letter = {
+    //     //     time: date,
+    //     //     optionLetter: value,
+    //     //     user: 'QUANGND',
+    //     //     ...data
+    //     // }
         
-    }
+    //     onCancle()
+    // };
 
-    const onSubmit = (data) => {
-        let newData = {
-            time: date,
-            title: value,
-            ...data
-        }
-        console.log(newData);
-    };
-
-    const handleCancel = () => {
-        createTwoButtonAlert()
-    }
-
-    const createTwoButtonAlert = () =>
-        Alert.alert(
-        "Thông báo!",
-        "Bạn có chắc chắn hủy lá đơn này?",
-        [
-            {
-                text: "Cancel",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-            },
-            { text: "OK", onPress: () => navigate.navigate(REQUEST) }
-        ]
-    );
+    // const createTwoButtonAlert = () =>
+    //     Alert.alert(
+    //     "Thông báo!",
+    //     "Bạn có chắc chắn hủy lá đơn này?",
+    //     [
+    //         {
+    //             text: "Cancel",
+    //             onPress: () => console.log("Cancel Pressed"),
+    //             style: "cancel"
+    //         },
+    //         { text: "OK", onPress: () => navigate.navigate(REQUEST) }
+    //     ]
+    // );
     
     return (
         <View>
-            <Header title="Tạo đơn từ" isBack={true} />
+            <Header title="Tạo đơn từ"/>
             <DropDownPicker
                 open={open}
                 setOpen={setOpen}
@@ -93,7 +91,6 @@ const AddLetter = () => {
                     // backgroundColor: 'red'
                 }}
             />
-            {value !== null ? (
                 <View style={{padding: 16, backgroundColor: R.colors.white}}>
                     <View>
                         <PickerDate
@@ -148,10 +145,8 @@ const AddLetter = () => {
                         />
                     </View>
                     <Button backgroundColor={R.colors.main} title="GỬI ĐƠN" onPress={handleSubmit(onSubmit)} />
-                    <Button backgroundColor={R.colors.colorTuChoi} title="HỦY ĐƠN " onPress={handleCancel} />
+                    <Button backgroundColor={R.colors.colorTuChoi} title="HỦY ĐƠN " onPress={onCancle} />
                 </View>
-            ) : <></>
-            }
         </View>
     )
 }

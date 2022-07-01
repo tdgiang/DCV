@@ -7,9 +7,9 @@ import { ACCEPT, WAIT, REJECT } from '../../Config/constants'
 import styles from "./style"
 
 const Letter = (props) => {
-    const { optionLetter, time, type, reason, user, status } = props
+    const { optionLetter, time, type, reason, user, status, id } = props
     return (
-        <View style={styles.wapperLetter}>
+        <View style={styles.wapperLetter} key={id}>
             <Text style={styles.heading}>{optionLetter}</Text>
             <View style={styles.bodyLetter}>
                 <View style={styles.letterItem}>

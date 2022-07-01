@@ -25,6 +25,7 @@ const TextField = (props) => {
     textColor,
     tinColor,
     fontSize,
+    containerStyle
   } = props;
 
   const [showPassword, setShowPassword] = useState(false)
@@ -43,7 +44,7 @@ const TextField = (props) => {
         fontSize={24}
         keyboardType={keyboardType}
         onChangeText={(val) => onChangeText(val)}
-        style={{
+        style={[{
           // height: HEIGHTXD(60),
           // color: textColor,
           // color: 'red',
@@ -56,7 +57,9 @@ const TextField = (props) => {
           borderRadius: 20,
 
           // borderBottomColor: "#80E0FF",
-        }}
+        },
+        {...containerStyle}
+      ]}
 
       />
         {isPassword && <TouchableOpacity style={{position: 'absolute', right: 17, top: 20}}

@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, View } from "react-native";
+import React, {useState} from "react";
+import { Image, View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { connect } from "react-redux";
@@ -7,16 +7,21 @@ import R from "../assets/R";
 import Octicons from "react-native-vector-icons/Octicons";
 import Entypo from "react-native-vector-icons/Entypo"
 import AntDesign from "react-native-vector-icons/AntDesign"
+import Feather from "react-native-vector-icons/Feather"
 
 import Home from "../Screens/home/Home";
 import Request from "../Screens/request/Request";
-import Notification from "../Screens/notification/Notification";
-import Account from "../Screens/Account/Account";
+import TimeKeeping from "../Screens/timekeeping/TimeKeeping";
+import Notification from "../Screens/Notification/Notification";
 import Profile from "../Screens/Profile/Profile"
+import { listNotifi } from '../Screens/Notification/NotificationItem'
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = (props) => {
+  const [isClicked, setIsClicked ] = useState(false)
+
+  console.log(props);
   return (
     <View style={{ flex: 1 }}>
       <Tab.Navigator
@@ -50,22 +55,40 @@ const TabNavigator = (props) => {
         />
 
         <Tab.Screen
-          name="NotificationScreen"
-          component={Notification}
+          name="TimeKeepingScreen"
+          component={TimeKeeping}
           options={{
             tabBarLabel: "Chấm công",
             tabBarIcon: ({ color, size }) => (
-              <Octicons name="bell" size={size} color={color} />
+              <Feather name="check-circle" size={size} color={color} />
             ),
           }}
         />
         <Tab.Screen
           name="AccountScreen"
-          component={Account}
+          component={Notification}
+          listeners={{
+            tabPress: () => {
+              setIsClicked(true)
+            }
+          }}
           options={{
-            tabBarLabel: "Thông báo",
-            tabBarIcon: ({ color, size }) => (
-              <Octicons name="person" size={size} color={color} />
+            tabBarLabel: "",
+            tabBarOnPress: ({click}) => {
+              click(setIsClicked(true))
+              
+            },
+            tabBarIcon: ({ color, size, focused, click }) => (
+              <View style={{alignItems: "center", position:"relative"}}>
+                <AntDesign name="bells" size={size} color={color} />
+                <Text style={{fontSize: 10, paddingTop: 0, position: "absolute", top: 30, color: focused ? R.colors.main : R.colors.black}}>Thông báo</Text>
+                  {isClicked ? null : (
+                    
+                    <View style={{position: "absolute",alignItems: "center", justifyContent: "center", right: -10, top: -4, width: 20, height: 20, borderRadius: 20, backgroundColor: R.colors.red1}}>
+                    <Text style={{color: R.colors.white, fontSize: 14, fontWeight: '600'}}>{listNotifi.length}</Text>
+                  </View>
+                  )}
+              </View>
             ),
           }}
         />
@@ -73,10 +96,11 @@ const TabNavigator = (props) => {
           name="Profile"
           component={Profile}
           options={{
-            tabBarLabel: "Cài đặt",
+            tabBarLabel: "Thông tin",
             tabBarIcon: ({ color, size }) => (
-              <Entypo name="circle-with-plus" size={size} color={color} />
+              <AntDesign name="user" size={size} color={color} />
             ),
+            
           }}
         />
       </Tab.Navigator>

@@ -93,6 +93,8 @@ const listBanner = [
 ]
 
 const Home = (props) => {
+
+    console.log(props)
     return (
         <HomeView 
             listItem={listItem}

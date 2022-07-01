@@ -34,7 +34,7 @@ import {
 } from "../../routers/ScreenNames";
 import I18n from "../../helper/i18/i18n";
 import { showAlert, TYPE } from "../../components/DropdownAlert";
-import { loginApi } from "../../apis/Functions/users";
+import { LoginApi } from '../../apis/user'
 import { showLoading, hideLoading } from "../../actions/loadingAction";
 import { saveUserToRedux } from "../../actions/users";
 import { connect } from "react-redux";
@@ -57,9 +57,28 @@ const Login = (props) => {
 
   const navigate = useNavigation();
 
-  const onSubmit = (data) => {
-    navigate.navigate(TABNAVIGATOR);
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await LoginApi({ })
+      const dataLogin = response.data
+      if (response.status === 200) {
+        dataLogin.forEach((item) =>  {
+          if (item.username == data.username && item.password == data.password) {
+            props.saveUserToRedux(item)
+            navigate.navigate(TABNAVIGATOR, { item })
+          } else {
+            Alert.alert(
+              'Sai tên tài khoản hoặc mật khẩu'
+            )
+          }
+        })
+
+
+    }
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 
   return (
@@ -125,13 +144,12 @@ const Login = (props) => {
           containerStyle={{marginTop: 8}}
         />
 
-        <View style={styles.row}>
+        {/* <View style={styles.row}>
           <View />
           <TouchableOpacity onPress={() => navigate.navigate(FORGOTPASSWORD)}>
-            {/* <AppText style={styles.txtTitle} i18nKey={"ForgotPassword"} /> */}
-            <Text style={{textDecorationLine: "underline", fontWeight: "bold"}}>Quên mật khẩu?</Text>
+            <AppText style={styles.txtTitle} i18nKey={"ForgotPassword"} />
           </TouchableOpacity>
-        </View>
+        </View> */}
         {/* <Button
           onPress={() => navigate.navigate(REGISTER)}
           backgroundColor={"#55CEBF"}

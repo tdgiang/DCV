@@ -70,10 +70,35 @@ const styles = StyleSheet.create({
     },
     wrappDay: {
         backgroundColor: R.colors.white,
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingVertical: 28,
         borderRadius: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        marginRight: 24
 
+    },
+    squreStyle: {
+      width: "100%",
+      height: 160,
+      borderRadius: 12,
+      backgroundColor: R.colors.main,
+    },
+    arcStyle: {
+      width: "20%",
+      height: 70,
+      position: "absolute",
+      bottom: -25,
+      left: "40%",
+      borderRadius: 35,
+      backgroundColor: R.colors.main,
+      transform: [{ scaleX: 5 }, { scaleY: 1 }],
+    },
+    shadow: {
+      shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2,},
+        shadowOpacity: 0.34,
+        shadowRadius: 3.27,
+        elevation: 1,
     }
   
   });

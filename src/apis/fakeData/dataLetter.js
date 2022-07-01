@@ -33,7 +33,7 @@ const data = [
         time: "02/02/2022",
         type: "Làm thêm",
         reason: "Làm bù ",
-        status: 'wait',
+        status: 'accept',
         user: "QUANGND"
     },
     {
